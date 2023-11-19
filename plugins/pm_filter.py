@@ -48,7 +48,7 @@ async def give_filter(client, message):
     settings = await get_settings(message.chat.id)
     if settings["auto_filter"]:
         if message.chat.id == SUPPORT_GROUP:
-            files, offset, total = await get_search_results(message.text, offset=0, filter=True)
+            files, offset, total = await get_search_results(message.text, offset=0, filter=False)
             if files:
                 btn = [[
                     InlineKeyboardButton("Here", url='https://t.me/SL_Films_World')
@@ -155,7 +155,7 @@ async def give_filter(client, message):
 
 @Client.on_message(filters.private & filters.text)
 async def pm_search(client, message):
-    files, n_offset, total = await get_search_results(message.text, filter=True)
+    files, n_offset, total = await get_search_results(message.text, filter=False)
     if int(total) != 0:
         btn = [[
             InlineKeyboardButton("Here", url='https://t.me/SL_Films_World')
